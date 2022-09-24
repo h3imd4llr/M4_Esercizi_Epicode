@@ -14,6 +14,7 @@ var libri = []
     
             let img = document.createElement("img")
             img.setAttribute("src", res[i].img)
+            img.setAttribute("style", "height: 30vw")
     
             let cardBody = document.createElement("div")
             cardBody.classList.add("card-body")
@@ -31,7 +32,7 @@ var libri = []
             aBtn.setAttribute("href", "#")
             aBtn.innerText = "Add to cart"
             aBtn.addEventListener("click", () => {
-              alert("hai cliccato; " + res[i].title)
+              alert("hai cliccato: " + res[i].title)
             });
             
             let price = document.createElement("div")

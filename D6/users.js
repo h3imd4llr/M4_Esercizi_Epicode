@@ -46,6 +46,7 @@ async function load() {
         thBody.setAttribute("scope", "col")
         let td = document.createElement("td")
         td.innerText = utenti[i].name
+        td.classList.add("nomeUtente")
         let td1 = document.createElement("td")
         td1.innerText = utenti[i].username
         let td2 = document.createElement("td")
@@ -61,6 +62,7 @@ async function load() {
         trBody.appendChild(td3)
     }
     indirizzi()
+    preOrdina()
 }
 load()
 
@@ -82,6 +84,19 @@ function fn() {
     }
 }
 
+function mostraNomi(){
+    let dropdown = document.getElementById("dropdown-menu")
+    dropdown.innerHTML = ""
+    for (let i = 0; i < utenti.length; i++) {
+        let li = document.createElement("li")
+        let aDrop = document.createElement("a")
+        aDrop.classList.add("dropdown-item")
+        aDrop.innerText = utenti[i].name
+        li.appendChild(aDrop)
+        dropdown.appendChild(li)
+    }
+}
+
 function indirizzi() {
     let via = []
     for (let i = 0; i < utenti.length; i++) {
@@ -90,3 +105,21 @@ function indirizzi() {
     let viaStringfied = JSON.stringify(via)
     console.log(viaStringfied);
 }
+
+/*
+async function preOrdina(){
+    for (let index = 0; index < utenti.length; index++) {
+        arr[index] = utenti[index]
+        arrRev[index] = utenti[index]
+    }
+    let btn = document.getElementById("ordina")
+    btn.addEventListener("click", () => {
+        console.log(
+            arr.sort((a,b) => parseFloat((a.name) - parseFloat(b.name)))
+        )
+    }
+    )
+    console.log("PRIMO", arr);
+}
+*/
+
