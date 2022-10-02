@@ -50,6 +50,7 @@ listProduct()
 
 let count = 0
 async function loadTable(){
+    let url = "https://striveschool-api.herokuapp.com/api/product/"
     let table = document.getElementById("table-t")
     let tableBody = document.createElement("tbody")
     for (let i = 0; i < prodotti.length; i++) {
@@ -133,21 +134,14 @@ async function loadTable(){
                 count = 0
             }
         })
-
+        let prodId = url + prodotti[i]._id
         let deleteBtn = document.createElement("button")
         deleteBtn.setAttribute("type", "button")
         deleteBtn.classList.add("btn")
         deleteBtn.classList.add("btn-dark")
         deleteBtn.innerText = "Delete"
         deleteBtn.addEventListener("click", async () => {
-            let url = "https://striveschool-api.herokuapp.com/api/product/" + prodotti[i]._id
-            let options = {
-                method: "DELETE",
-                headers: {
-                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzJjYTJjOWY1ZDVmYTAwMTU4ZTYwYzQiLCJpYXQiOjE2NjQwMjE3MDQsImV4cCI6MTY2NTIzMTMwNH0.MslDxc4Meem-B2K59suq18ANYdep8c3WJuHpBCvP1q0"
-                }
-            }
-            await fetch(url, options)
+            deleteProduct(prodId)
         })
 
         table.appendChild(tableBody)
@@ -160,6 +154,16 @@ async function loadTable(){
         tr.appendChild(editBtn)
         tr.appendChild(deleteBtn)
     }
+}
+
+async function deleteProduct(e){
+            let options = {
+                method: "DELETE",
+                headers: {
+                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzJjYTJjOWY1ZDVmYTAwMTU4ZTYwYzQiLCJpYXQiOjE2NjQwMjE3MDQsImV4cCI6MTY2NTIzMTMwNH0.MslDxc4Meem-B2K59suq18ANYdep8c3WJuHpBCvP1q0"
+                }
+            }
+            await fetch(e, options)
 }
 function edit(el) {
     el.removeAttribute("disabled");

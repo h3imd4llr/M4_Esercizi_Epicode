@@ -24,6 +24,7 @@ fn()
 function createCards(prodotti){
     apriCaricamento()
     let container = document.getElementById("containerCard")
+    container.setAttribute("style", "display: flex;")
     for (let i = 0; i < prodotti.length; i++) {
         let card = document.createElement("div")
         card.classList.add("card")
